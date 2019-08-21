@@ -1,0 +1,37 @@
+<h2>Filter:</h2>
+<div class="filter">
+    <input
+      class="input-filter"
+      type="text"
+      placeholder="Filter todo list by title..."
+      pattern="[A-Za-zА-Яа-яЁё ]+"
+      maxlength="20"
+      [(ngModel)]="searchTitle"
+    >
+  <input
+    class="input-filter"
+    type="date"
+    [(ngModel)]="searchDate"
+  >
+</div>
+<h2>Sorting:</h2>
+<div class="sorting">
+  <button class="sort" (click)="sortByTitleAsc()">Sort Title Asc</button>
+  <button class="sort" (click)="sortByTitleDesc()">Sort Title Desc</button>
+  <button class="sort" (click)="btnDischarging()">Discharge</button>
+  <button class="sort" (click)="sortByDateAsc()">Sort Date Asc</button>
+  <button class="sort" (click)="sortByDateDesc()">Sort Date Desc</button>
+</div>
+<ul *ngIf="todosService.todos.length; else noTodos">
+  <li *ngFor="let todo of todosService.todos | todoFilter:searchTitle | todoFilterDate:searchDate; let i = index">
+    <span [class.done]="todo.completed">
+      <input type="checkbox" [checked]="todo.completed" (change)="onChange(todo.id)">
+      <strong>{{ i + 1}}</strong> {{todo.title}}
+    </span>
+    <small>{{todo.date | date:"longDate"}}</small>
+    <button class="rm" (click)="delTodo(todo.id)">&times;</button>
+  </li>
+</ul>
+<ng-template #noTodos>
+  <p style="text-align: center">No todos now!</p>
+</ng-template>

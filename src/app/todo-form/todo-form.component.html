@@ -1,0 +1,24 @@
+<div>
+  <input
+    type="text"
+    placeholder="Add some todo..."
+    pattern="[A-Za-zА-Яа-яЁё ]+"
+    maxlength="20"
+    required
+    [(ngModel)]="title"
+    #_title="ngModel"
+    (keydown.enter)="addTodo()"
+  >
+
+  <input
+    type="date"
+    class="form-control"
+    required
+    [(ngModel)]="date"
+    #_date="ngModel"
+    (keydown.enter)="addTodo()"
+  >
+  <button [disabled]="_title.invalid || _date.invalid" (click)="addTodo()">Add todo</button>
+</div>
+
+
