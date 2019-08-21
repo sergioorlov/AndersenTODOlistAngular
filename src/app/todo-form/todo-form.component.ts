@@ -7,8 +7,8 @@ import {Todo, TodosService} from '../todos.service';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
-  title:string = '';
-  date:string = '';
+  title = '';
+  date = '';
   constructor(private todosService: TodosService) { }
 
   ngOnInit() {

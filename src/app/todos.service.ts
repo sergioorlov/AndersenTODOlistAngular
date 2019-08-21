@@ -4,7 +4,7 @@ export interface Todo {
   id: number;
   title: string;
   completed: boolean;
-  date?: any;
+  date: string;
 }
 
 @Injectable({
@@ -17,12 +17,12 @@ export class TodosService {
   public todos: Todo[] = this.loadLS();
 
   saveLS() {
-    const str = JSON.stringify(this.todos);
+    const str: string = JSON.stringify(this.todos);
     localStorage.setItem('todos', str);
   }
   loadLS() {
-    const str = localStorage.getItem('todos') || '[]';
-    const test = [
+    const str: string = localStorage.getItem('todos') || '[]';
+    const test: Array<Todo> = [
       {
         completed: false,
         date: '2019-09-13',
@@ -49,11 +49,11 @@ export class TodosService {
       }
     ];
 
-    const someTestObj = JSON.stringify(test);
-    const data = JSON.parse(str) || [];
-    const someObj = JSON.parse(someTestObj);
+    const someTestObj: string = JSON.stringify(test);
+    const data: Array<Todo> = JSON.parse(str) || [];
+    const someObj: Array<Todo> = JSON.parse(someTestObj);
 
-    const result = !localStorage.getItem('todos') ? someObj :  data;
+    const result: Array<Todo> = !localStorage.getItem('todos') ? someObj :  data;
     return result;
   }
 
@@ -73,9 +73,8 @@ export class TodosService {
   }
 
   sortTitleAsc() {
-    const item = this.todos;
-    console.log(item);
-    const titleAsc = Array.from(item);
+    const item: Array<Todo> = this.todos;
+    const titleAsc: Array<Todo> = Array.from(item);
     titleAsc.sort((a, b) => {
       if (a.title.toLowerCase() > b.title.toLowerCase()) {
         return 1;
@@ -86,13 +85,11 @@ export class TodosService {
       return 0;
     });
     this.todos = titleAsc;
-    console.log(titleAsc);
-    console.log(this.todos);
   }
 
   sortTitleDesc() {
-    const item = this.todos;
-    const titleDesc = Array.from(item);
+    const item: Array<Todo> = this.todos;
+    const titleDesc: Array<Todo> = Array.from(item);
     const sortedDesc = titleDesc.sort((a, b) => {
       if (a.title.toLowerCase() > b.title.toLowerCase()) {
         return 1;
@@ -107,8 +104,8 @@ export class TodosService {
   }
 
   sortDateAsc() {
-    const item = this.todos;
-    const dateAsc = Array.from(item);
+    const item: Array<Todo> = this.todos;
+    const dateAsc: Array<Todo> = Array.from(item);
     dateAsc.sort((a, b) => {
       if (a.date > b.date) {
         return 1;
@@ -121,8 +118,8 @@ export class TodosService {
     this.todos = dateAsc;
   }
   sortDateDesc() {
-    const item = this.todos;
-    const dateDesc = Array.from(item);
+    const item: Array<Todo> = this.todos;
+    const dateDesc: Array<Todo> = Array.from(item);
     const sortedDesc = dateDesc.sort((a, b) => {
       if (a.date > b.date) {
         return 1;
@@ -137,9 +134,8 @@ export class TodosService {
   }
 
   discharging() {
-    const item = this.todos;
-    console.log(item);
-    const discharge = Array.from(item);
+    const item: Array<Todo> = this.todos;
+    const discharge: Array<Todo> = Array.from(item);
     discharge.sort((a, b) => {
       if (a.id > b.id) {
         return 1;
@@ -150,7 +146,5 @@ export class TodosService {
       return 0;
     });
     this.todos = discharge;
-    console.log(discharge);
-    console.log(this.todos);
   }
 }

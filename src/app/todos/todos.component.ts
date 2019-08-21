@@ -10,8 +10,8 @@ export class TodosComponent implements OnInit {
 
   constructor(private todosService: TodosService) { }
 
-  private searchTitle: string = '';
-  private searchDate: string = '';
+  private searchTitle = '';
+  private searchDate = '';
 
   ngOnInit() {
   }
