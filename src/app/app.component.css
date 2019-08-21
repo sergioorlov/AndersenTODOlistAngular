@@ -1,0 +1,21 @@
+.container {
+  padding-top: 3rem;
+  width: 600px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  padding: 0 1rem;
+  color: white;
+  background: url(../img/logo.jpg);
+  height: 88px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+header h1 {
+  display: inline-block;
+  color: #323330;
+  margin: 1rem auto;
+}
