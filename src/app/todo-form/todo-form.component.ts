@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Todo, TodosService} from '../todos.service';
+import {ITodo, TodosService} from '../todos.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -15,7 +15,7 @@ export class TodoFormComponent implements OnInit {
   }
 
   addTodo() {
-    const todo: Todo = {
+    const todo: ITodo = {
       title: this.title,
       id: Date.now(),
       completed: false,

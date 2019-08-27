@@ -23,15 +23,19 @@
   <button class="sort" (click)="sortByDateDesc()">Sort Date Desc</button>
 </div>
 <ul *ngIf="todosService.todos.length; else noTodos">
-  <li *ngFor="let todo of todosService.todos | todoFilter:searchTitle | todoFilterDate:searchDate; let i = index">
+  <li *ngFor="let todo of todosService.todos | todoFilter:searchTitle | todoFilterDate:searchDate">
     <span [class.done]="todo.completed">
-      <input type="checkbox" [checked]="todo.completed" (change)="onChange(todo.id)">
-      <strong>{{ i + 1}}</strong> {{todo.title}}
+      <input
+        type="checkbox"
+        [checked]="todo.completed"
+        (change)="onChange(todo.id)"
+      >
+      <strong>{{todo.title}}</strong>
     </span>
     <small>{{todo.date | date:"longDate"}}</small>
     <button class="rm" (click)="delTodo(todo.id)">&times;</button>
   </li>
 </ul>
 <ng-template #noTodos>
-  <p style="text-align: center">No todos now!</p>
+  <p>No todos now!</p>
 </ng-template>

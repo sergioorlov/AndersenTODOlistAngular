@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export interface Todo {
+export interface ITodo {
   id: number;
   title: string;
   completed: boolean;
@@ -12,17 +12,15 @@ export interface Todo {
 })
 export class TodosService {
 
-  constructor() { }
+  public todos: ITodo[] = this.loadLS();
 
-  public todos: Todo[] = this.loadLS();
-
-  saveLS() {
+  saveLS(): void {
     const str: string = JSON.stringify(this.todos);
     localStorage.setItem('todos', str);
   }
-  loadLS() {
+  loadLS(): Array<ITodo> {
     const str: string = localStorage.getItem('todos') || '[]';
-    const test: Array<Todo> = [
+    const test: Array<ITodo> = [
       {
         completed: false,
         date: '2019-09-13',
@@ -50,10 +48,10 @@ export class TodosService {
     ];
 
     const someTestObj: string = JSON.stringify(test);
-    const data: Array<Todo> = JSON.parse(str) || [];
-    const someObj: Array<Todo> = JSON.parse(someTestObj);
+    const data: Array<ITodo> = JSON.parse(str) || [];
+    const someObj: Array<ITodo> = JSON.parse(someTestObj);
 
-    const result: Array<Todo> = !localStorage.getItem('todos') ? someObj :  data;
+    const result: Array<ITodo> = !localStorage.getItem('todos') ? someObj :  data;
     return result;
   }
 
@@ -67,14 +65,14 @@ export class TodosService {
     this.saveLS();
   }
 
-  addTodo(todo: Todo) {
+  addTodo(todo: ITodo) {
     this.todos.push(todo);
     this.saveLS();
   }
 
   sortTitleAsc() {
-    const item: Array<Todo> = this.todos;
-    const titleAsc: Array<Todo> = Array.from(item);
+    const item: Array<ITodo> = this.todos;
+    const titleAsc: Array<ITodo> = Array.from(item);
     titleAsc.sort((a, b) => {
       if (a.title.toLowerCase() > b.title.toLowerCase()) {
         return 1;
@@ -88,8 +86,8 @@ export class TodosService {
   }
 
   sortTitleDesc() {
-    const item: Array<Todo> = this.todos;
-    const titleDesc: Array<Todo> = Array.from(item);
+    const item: Array<ITodo> = this.todos;
+    const titleDesc: Array<ITodo> = Array.from(item);
     const sortedDesc = titleDesc.sort((a, b) => {
       if (a.title.toLowerCase() > b.title.toLowerCase()) {
         return 1;
@@ -104,8 +102,8 @@ export class TodosService {
   }
 
   sortDateAsc() {
-    const item: Array<Todo> = this.todos;
-    const dateAsc: Array<Todo> = Array.from(item);
+    const item: Array<ITodo> = this.todos;
+    const dateAsc: Array<ITodo> = Array.from(item);
     dateAsc.sort((a, b) => {
       if (a.date > b.date) {
         return 1;
@@ -118,8 +116,8 @@ export class TodosService {
     this.todos = dateAsc;
   }
   sortDateDesc() {
-    const item: Array<Todo> = this.todos;
-    const dateDesc: Array<Todo> = Array.from(item);
+    const item: Array<ITodo> = this.todos;
+    const dateDesc: Array<ITodo> = Array.from(item);
     const sortedDesc = dateDesc.sort((a, b) => {
       if (a.date > b.date) {
         return 1;
@@ -134,8 +132,8 @@ export class TodosService {
   }
 
   discharging() {
-    const item: Array<Todo> = this.todos;
-    const discharge: Array<Todo> = Array.from(item);
+    const item: Array<ITodo> = this.todos;
+    const discharge: Array<ITodo> = Array.from(item);
     discharge.sort((a, b) => {
       if (a.id > b.id) {
         return 1;

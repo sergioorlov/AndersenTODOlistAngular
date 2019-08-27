@@ -1,11 +1,11 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Todo} from './todos.service';
+import {ITodo} from './todos.service';
 
 @Pipe({
   name: 'todoFilter'
 })
 export class TodosFilterPipe implements PipeTransform {
-  transform(todo: Todo[], search: string = ''): Todo[] {
+  transform(todo: ITodo[], search: string = ''): ITodo[] {
     if (!search.trim()) {
       return todo;
     }

@@ -47,3 +47,7 @@ input:valid {
 input:invalid {
   border-color: #ff8e7a;
 }
+
+p {
+  text-align: center;
+}
