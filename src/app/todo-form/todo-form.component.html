@@ -1,4 +1,4 @@
-<div>
+<form #myForm="ngForm">
   <input
     type="text"
     placeholder="Add some todo..."
@@ -6,7 +6,7 @@
     maxlength="20"
     required
     [(ngModel)]="title"
-    #_title="ngModel"
+    name="title"
     (keydown.enter)="addTodo()"
   >
 
@@ -15,10 +15,10 @@
     class="form-control"
     required
     [(ngModel)]="date"
-    #_date="ngModel"
+    name="date"
     (keydown.enter)="addTodo()"
   >
-  <button [disabled]="_title.invalid || _date.invalid" (click)="addTodo()">Add todo</button>
-</div>
+  <button [disabled]="!myForm.form.valid" (click)="addTodo()">Add todo</button>
+</form>
 
 
