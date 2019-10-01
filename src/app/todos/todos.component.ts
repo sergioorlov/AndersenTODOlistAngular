@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {TodosService} from '../todos.service';
 
 @Component({
@@ -6,15 +6,12 @@ import {TodosService} from '../todos.service';
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css']
 })
-export class TodosComponent implements OnInit {
+export class TodosComponent {
 
   constructor(private todosService: TodosService) { }
 
   private searchTitle = '';
   private searchDate = '';
-
-  ngOnInit() {
-  }
 
   onChange(id: number) {
     this.todosService.onToggle(id);

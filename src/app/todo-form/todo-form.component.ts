@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {ITodo, TodosService} from '../todos.service';
 
 @Component({
@@ -6,13 +6,10 @@ import {ITodo, TodosService} from '../todos.service';
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.css']
 })
-export class TodoFormComponent implements OnInit {
+export class TodoFormComponent {
   title = '';
   date = '';
   constructor(private todosService: TodosService) { }
-
-  ngOnInit() {
-  }
 
   addTodo() {
     const todo: ITodo = {
